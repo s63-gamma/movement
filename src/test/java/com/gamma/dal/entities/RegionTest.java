@@ -22,7 +22,7 @@ public class RegionTest {
         Session session = new DatabaseUtil().getSession();
         session.beginTransaction();
 
-        Region region = new Region("MANC UNITED");
+        Region region = new Region("MANC UNITED", 1, 1, 1, 1);
         session.save(region);
 
         session.getTransaction().commit();
