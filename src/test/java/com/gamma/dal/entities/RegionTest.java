@@ -28,7 +28,7 @@ public class RegionTest {
         session.getTransaction().commit();
         session.close();
 
-        assertNotNull(region.getId());
+        assertNotNull(region.getUuid());
     }
 
 }
