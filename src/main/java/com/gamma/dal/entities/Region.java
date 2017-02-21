@@ -18,13 +18,53 @@ public class Region {
 
     public Region() {}
 
-    public Region(String name) {
-        this.name = name;
-    }
+	public int getLongitude() {
+		return longitude;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setLongitude(int longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(int latitude) {
+		this.latitude = latitude;
+	}
+
+	public int getRadius() {
+		return radius;
+	}
+
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+
+	public int getCostMultiplier() {
+		return costMultiplier;
+	}
+
+	public void setCostMultiplier(int costMultiplier) {
+		this.costMultiplier = costMultiplier;
+	}
+
+	public Region(String name, int longitude, int latitude, int radius, int costMultiplier) {
+		this.name = name;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.radius = radius;
+		this.costMultiplier = costMultiplier;
+	}
+
+	public Region() {
+	}
+
+
+	public Long getId() {
+		return id;
+	}
 
     public String getName() {
         return name;
