@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabf19d9_86983d79",
+        "filename": "src/main/java/com/gamma/dal/entities/Region.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-02-21T13:48:14Z",
+      "side": 1,
+      "message": "Needs to be a decimal number\ne.g. float, double, or precies decimal type",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "1df4e9c788163fb3b96a6998ffcce736817b4eb9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
