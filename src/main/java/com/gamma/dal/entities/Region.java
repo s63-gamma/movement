@@ -62,9 +62,6 @@ public class Region {
 		this.costMultiplier = costMultiplier;
 	}
 
-	public Region() {
-	}
-
 	public Region(String name, int longitude, int latitude, int radius, int costMultiplier) {
 		this.name = name;
 		this.longitude = longitude;
@@ -72,6 +69,10 @@ public class Region {
 		this.radius = radius;
 		this.costMultiplier = costMultiplier;
 	}
+
+	public Region() {
+	}
+
 
 	public Long getId() {
 		return id;
