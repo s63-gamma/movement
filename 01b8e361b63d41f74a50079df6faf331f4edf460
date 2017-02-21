@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabf19d9_e6bff9cd",
+        "filename": ".editorconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-02-21T13:54:27Z",
+      "side": 1,
+      "message": "4 spaces seems more appropriate.\ne.g. http://eslint.org/docs/rules/indent",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "01b8e361b63d41f74a50079df6faf331f4edf460",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
