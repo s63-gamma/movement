@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by guushamm on 21-2-17.
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HelloWorldController {
 
 	@RequestMapping("/")
-	public String index(@RequestParam(value="name", defaultValue = "World") String name){
+	@ResponseBody
+	String index(@RequestParam(value="name", defaultValue = "World") String name){
 		return String.format("Hello %s", name);
 	}
 
