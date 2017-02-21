@@ -22,6 +22,29 @@
       "revId": "1df4e9c788163fb3b96a6998ffcce736817b4eb9",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_46e465aa",
+        "filename": "src/test/java/com/gamma/dal/entities/RegionTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-21T13:56:13Z",
+      "side": 1,
+      "message": "Same issue as at https://review.gerrithub.io/#/c/349758/",
+      "range": {
+        "startLine": 21,
+        "startChar": 16,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "1df4e9c788163fb3b96a6998ffcce736817b4eb9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
