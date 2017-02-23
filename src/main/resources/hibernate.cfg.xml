@@ -18,5 +18,6 @@
         <mapping class="com.gamma.dal.entities.GpsPoint" />
         <mapping class="com.gamma.dal.entities.Invoice" />
         <mapping class="com.gamma.dal.entities.Owner" />
+        <mapping class="com.gamma.dal.entities.Car" />
     </session-factory>
 </hibernate-configuration>
