@@ -20,5 +20,6 @@
         <mapping class="com.gamma.dal.entities.Owner" />
         <mapping class="com.gamma.dal.entities.Car" />
         <mapping class="com.gamma.dal.entities.Trip" />
+        <mapping class="com.gamma.dal.entities.Rate" />
     </session-factory>
 </hibernate-configuration>
