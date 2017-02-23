@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabf19d9_e966a128",
+        "filename": "src/main/java/com/gamma/dal/entities/Region.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T12:06:14Z",
+      "side": 1,
+      "message": "This file should also be converted to Kotlin, I thought this was done already?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "02cb285a8b8e57ca9f44d118a846f15f2f7b41b7",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
