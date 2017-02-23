@@ -17,5 +17,6 @@
         <mapping class="com.gamma.dal.entities.Region" />
         <mapping class="com.gamma.dal.entities.GpsPoint" />
         <mapping class="com.gamma.dal.entities.Invoice" />
+        <mapping class="com.gamma.dal.entities.Owner" />
     </session-factory>
 </hibernate-configuration>
