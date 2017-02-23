@@ -116,6 +116,30 @@
       "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_095f9576",
+        "filename": "src/test/java/com/gamma/dal/entities/InvoiceTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-02-23T11:38:19Z",
+      "side": 1,
+      "message": "It\u0027s a test and should not be run in the container",
+      "parentUuid": "fabf19d9_a90f8987",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
