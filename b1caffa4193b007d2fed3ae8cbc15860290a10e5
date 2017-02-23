@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabf19d9_0911d5af",
+        "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T11:33:25Z",
+      "side": 1,
+      "message": "Is there a specific reason for using this instead of the value used in the hibernate docs? https://docs.jboss.org/hibernate/annotations/3.5/reference/en/html_single/#entity-hibspec-identifier",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 56
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_e915819b",
+        "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T11:33:25Z",
+      "side": 1,
+      "message": "Should this not be a UUID datatype?",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_a90f8987",
+        "filename": "src/test/java/com/gamma/dal/entities/InvoiceTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T11:33:25Z",
+      "side": 1,
+      "message": "This does not seem to be according to the `java ee way`. Should this not be handled at container level?",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
