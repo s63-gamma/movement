@@ -21,5 +21,6 @@
         <mapping class="com.gamma.dal.entities.Car" />
         <mapping class="com.gamma.dal.entities.Trip" />
         <mapping class="com.gamma.dal.entities.Rate" />
+        <mapping class="com.gamma.dal.entities.Tracker" />
     </session-factory>
 </hibernate-configuration>
