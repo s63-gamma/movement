@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fabf19d9_896cc537",
+        "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T11:38:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fabf19d9_0978b5f7",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 56
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fabf19d9_e915819b",
         "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
         "patchSetId": 1
@@ -83,6 +107,30 @@
       "writtenOn": "2017-02-23T11:36:12Z",
       "side": 1,
       "message": "Hibernate will not serialze UUID\u0027s",
+      "parentUuid": "fabf19d9_e915819b",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "b1caffa4193b007d2fed3ae8cbc15860290a10e5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_69697125",
+        "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-02-23T11:38:36Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "fabf19d9_e915819b",
       "range": {
         "startLine": 20,
