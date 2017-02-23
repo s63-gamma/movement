@@ -115,3 +115,5 @@ buildNumber.properties
 
 *.iml
 .docker/
+
+node_modules/
