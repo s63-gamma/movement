@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fabf19d9_29ba590b",
+        "filename": "src/main/java/com/gamma/dal/entities/Region.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-02-23T10:36:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fabf19d9_86983d79",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "1df4e9c788163fb3b96a6998ffcce736817b4eb9",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fabf19d9_46e465aa",
         "filename": "src/test/java/com/gamma/dal/entities/RegionTest.java",
         "patchSetId": 1
