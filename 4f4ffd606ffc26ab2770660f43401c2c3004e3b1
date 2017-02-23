@@ -16,6 +16,24 @@
       "revId": "4f4ffd606ffc26ab2770660f43401c2c3004e3b1",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fabf19d9_49546dc9",
+        "filename": "src/main/java/com/gamma/dal/entities/GpsPoint.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-02-23T10:36:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fabf19d9_a65b4185",
+      "revId": "4f4ffd606ffc26ab2770660f43401c2c3004e3b1",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
