@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabf19d9_97885bc8",
+        "filename": "src/main/java/com/gamma/dal/entities/Car.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-02-24T09:31:31Z",
+      "side": 1,
+      "message": "missing countryOfOrigin",
+      "revId": "9a12add87fa9cb9d4564e386e6c7879b50caef47",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
