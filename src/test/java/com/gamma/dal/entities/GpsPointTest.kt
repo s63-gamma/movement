@@ -1,43 +1,40 @@
 package com.gamma.dal.entities
 
-import com.gamma.dal.util.DatabaseUtil
-import org.hibernate.Session
-import org.hibernate.SessionFactory
+import com.gamma.repository.GpsPointRepository
+import com.gamma.repository.RegionRepository
+import org.junit.Assert.assertNotNull
 import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Test
-
-import org.junit.Assert.*
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 
 /**
  *
  */
+@RunWith(SpringRunner::class)
+@SpringBootTest
 class GpsPointTest {
     lateinit var region: Region
 
+    @Autowired
+    lateinit var gpsPointRepository: GpsPointRepository
+
+    @Autowired
+    lateinit var regionRepository: RegionRepository
+
     @Before
     fun setupRegion() {
-        val session = DatabaseUtil().getSession()
-        session.beginTransaction()
-
         region = Region("So far in the closet he's found narnia", 1, 1, 1, 1)
-        session.save(region)
-
-        session.transaction.commit()
-        session.close()
+        regionRepository.save(region)
     }
 
     @Test
     fun createGpsPoint() {
-        val session = DatabaseUtil().getSession()
-        session.beginTransaction()
-
         val gpsPoint = GpsPoint(1.0, 1.0, 1)
         gpsPoint.region = region
-        session.save(gpsPoint)
-
-        session.transaction.commit()
-        session.close()
+        gpsPointRepository.save(gpsPoint)
 
         assertNotNull(gpsPoint.uuid)
     }
