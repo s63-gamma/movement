@@ -1,6 +1,7 @@
 package com.gamma.service;
 
 import com.gamma.dal.entities.Car;
+import com.gamma.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
