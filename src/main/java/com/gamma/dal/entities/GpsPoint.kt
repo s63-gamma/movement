@@ -20,8 +20,16 @@ class GpsPoint {
     var sequenceNumber: Int = 0
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
+    @JoinColumn(name = "regionId")
     var region: Region? = null
+
+    @ManyToOne
+    @JoinColumn(name = "tripId")
+    var trip: Trip? = null
+
+    @ManyToOne
+    @JoinColumn(name = "trackerId")
+    var tracker: Tracker? = null
 
     constructor(longitude: Double, latitude: Double, sequenceNumber: Int) {
         this.longitude = longitude

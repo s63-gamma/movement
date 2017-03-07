@@ -3,10 +3,7 @@ package com.gamma.dal.entities
 import org.hibernate.annotations.GeneratorType
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent row in Invoice table
@@ -24,6 +21,10 @@ class Invoice {
     var priceTotal = 0.0
     var status = 1
     var paymentCode = ""
+
+    @ManyToOne
+    @JoinColumn(name = "ownerId")
+    var owner : Owner? = null
 
     constructor(date: Date, distance: Double, priceTotal: Double, status: Int, paymentCode: String) {
         this.date = date

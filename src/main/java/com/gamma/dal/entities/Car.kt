@@ -1,10 +1,7 @@
 package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent car table
@@ -22,6 +19,15 @@ class Car {
     var weight = 0.0
     var milage = 0.0
     var type = ""
+
+    @OneToMany(mappedBy = "car")
+    var trips: List<Trip>? = null
+    @ManyToOne
+    @JoinColumn(name = "rateId")
+    var rate: Rate? = null
+
+    //todo trackers
+    //todo owners
 
     constructor(buildingYear: Int, licensePlate: String, weight: Double, milage: Double, type: String) {
         this.buildingYear = buildingYear

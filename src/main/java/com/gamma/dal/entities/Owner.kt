@@ -1,10 +1,7 @@
 package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent Owner table in database
@@ -23,6 +20,9 @@ class Owner {
     var surname = ""
     var phoneNumber = ""
     var residence = ""
+
+    @OneToMany(mappedBy = "owner")
+    var invoices: List<Invoice>? = null
 
     constructor(username: String, emailadres: String, name: String, surname: String, phoneNumber: String, residence: String) {
         this.username = username
