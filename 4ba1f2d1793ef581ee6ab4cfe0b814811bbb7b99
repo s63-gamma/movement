@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c665efb_7d97086f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:21:36Z",
+      "side": 1,
+      "message": "this isn\u0027t a feature, it\u0027s a chore",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "4ba1f2d1793ef581ee6ab4cfe0b814811bbb7b99",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "246c51b3_ba7e1610",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:21:36Z",
+      "side": 1,
+      "message": "pom.xml is not a module, dependencies is",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "4ba1f2d1793ef581ee6ab4cfe0b814811bbb7b99",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "684b6f33_96b424d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:21:36Z",
+      "side": 1,
+      "message": "What version is it bumped to?",
+      "revId": "4ba1f2d1793ef581ee6ab4cfe0b814811bbb7b99",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
