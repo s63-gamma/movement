@@ -13,7 +13,7 @@ class GpsPoint {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(unique = true)
-    val uuid: String? = null
+    val uuid: String = ""
 
     var longitude: Double = 0.toDouble()
     var latitude: Double = 0.toDouble()
@@ -21,7 +21,7 @@ class GpsPoint {
 
     @ManyToOne
     @JoinColumn(name = "region_id")
-    var region: Region? = null
+    lateinit var region: Region
 
     constructor(longitude: Double, latitude: Double, sequenceNumber: Int) {
         this.longitude = longitude
