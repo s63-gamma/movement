@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49e15b4a_d8e3646a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "what component? mark it with brackets",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1242cf_5aa2865f",
+        "filename": "src/main/java/com/gamma/dal/entities/Car.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "can these things be null are are they allowed to be null",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 26
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4b541bb_be46d519",
+        "filename": "src/main/java/com/gamma/dal/entities/Car.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "when is this done?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 17
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9845f3f6_38b9c7a4",
+        "filename": "src/main/java/com/gamma/dal/entities/GpsPoint.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "can these be null?",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e36f03a7_d8316726",
+        "filename": "src/main/java/com/gamma/dal/entities/Invoice.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "can an owner be null?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6dd0284f_2b71ec30",
+        "filename": "src/main/java/com/gamma/dal/entities/Owner.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "is a list  not empty by default?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 39
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c9e83f6_3e051311",
+        "filename": "src/main/java/com/gamma/dal/entities/Trip.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1010339
+      },
+      "writtenOn": "2017-03-14T08:19:41Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 41
+      },
+      "revId": "08f5624721524661a35b8d0c9992e4541d329698",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
