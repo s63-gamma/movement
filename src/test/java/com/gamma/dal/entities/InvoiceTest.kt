@@ -1,26 +1,27 @@
 package com.gamma.dal.entities
 
-import ch.qos.logback.core.db.dialect.DBUtil
-import com.gamma.dal.util.DatabaseUtil
-import org.junit.Assert.*
+import com.gamma.repository.InvoiceRepository
+import org.junit.Assert.assertNotNull
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit4.SpringRunner
 import java.util.*
 
 /**
  * Created by requinard on 2/23/17.
  */
+@RunWith(SpringRunner::class)
+@SpringBootTest
 class InvoiceTest {
-    val dbUtil by lazy { DatabaseUtil() }
+    @Autowired
+    lateinit var invoiceRepository: InvoiceRepository
+
     @Test
     fun createInvoice() {
-        val session = dbUtil.getSession()
-        session.beginTransaction()
-
         val invoice = Invoice(Date(), 1.0, 1.0, 1, "paid")
-        session.save(invoice)
-
-        session.transaction.commit()
-        session.close()
+        invoiceRepository.save(invoice)
 
         assertNotNull(invoice.uuid)
     }
