@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "car", path = "car")
-public interface CarRepository extends JpaRepository<Car, UUID> {
+public interface TrackerRepository extends JpaRepository<Car, UUID> {
 	List<Car> findByBuildingYear(@Param("buildingYear") int buildingYear);
 }
