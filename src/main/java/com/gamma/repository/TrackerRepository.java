@@ -1,14 +1,11 @@
 package com.gamma.repository;
 
-import com.gamma.dal.entities.Car;
+import com.gamma.dal.entities.Tracker;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.util.List;
 import java.util.UUID;
 
-@RepositoryRestResource(collectionResourceRel = "car", path = "car")
-public interface TrackerRepository extends JpaRepository<Car, UUID> {
-	List<Car> findByBuildingYear(@Param("buildingYear") int buildingYear);
+@RepositoryRestResource(collectionResourceRel = "tracker", path = "tracker")
+public interface TrackerRepository extends JpaRepository<Tracker, UUID> {
 }
