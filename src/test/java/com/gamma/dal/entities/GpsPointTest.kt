@@ -27,7 +27,7 @@ class GpsPointTest {
     @Before
     fun setupRegion() {
         region = Region("So far in the closet he's found narnia", 1, 1, 1, 1)
-        regionRepository.save(region)
+        regionRepository.saveAndFlush(region)
     }
 
     @Test
