@@ -17,7 +17,7 @@ class Invoice {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(unique = true)
-    val uuid: String = ""
+    val uuid: UUID? = null
 
     var date: Date = Date()
     var distance = 0.0
