@@ -1,6 +1,7 @@
 package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
+import java.util.*
 
 import javax.persistence.*
 
@@ -13,7 +14,7 @@ class GpsPoint {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(unique = true)
-    val uuid: String = ""
+    val uuid: UUID? = null
 
     var longitude: Double = 0.toDouble()
     var latitude: Double = 0.toDouble()

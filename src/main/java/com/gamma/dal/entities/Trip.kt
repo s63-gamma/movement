@@ -1,6 +1,7 @@
 package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -15,7 +16,7 @@ class Trip {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(unique = true)
-    val uuid: String = ""
+    val uuid: UUID? = null
 
     var startPoint: Double = 0.0
     var endPoint: Double = 0.0
