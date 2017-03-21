@@ -1,20 +1,52 @@
-db:
-  image: postgres:alpine
-  environment:
-    - POSTGRES_PASSWORD=queenelizabeth
-    - POSTGRES_USER=gamma
-    - POSTGRES_DB=gamma
-  ports:
-    - '5433:5432'
-  volumes:
-    - '.docker/db:/var/lib/postgresql/data'
-ldap:
-  image: dinkel/openldap
-  ports:
-    - '389:389'
-  environment:
-    - SLAPD_PASSWORD=queenelizabeth
-    - SLAPD_DOMAIN=swaggabros.nl
-  volumes:
-    - '.docker/ldap-conf:/etc/ldap'
-    - '.docker/ldap-data:/var/lib/ldap' 
+version: "2"
+services:
+  db:
+    container_name: 'gmovement_db'
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=queenelizabeth
+      - POSTGRES_USER=gamma
+      - POSTGRES_DB=gamma
+    ports:
+      - '5433:5432'
+    volumes:
+      - '.docker/db:/var/lib/postgresql/data'
+  ldap:
+    container_name: 'gmovement_ldap'
+    image: dinkel/openldap
+    ports:
+      - '389:389'
+    environment:
+      - SLAPD_PASSWORD=queenelizabeth
+      - SLAPD_DOMAIN=swaggabros.nl
+    volumes:
+      - '.docker/ldap-conf:/etc/ldap'
+      - '.docker/ldap-data:/var/lib/ldap'
+  db_kc:
+    container_name: 'gmovement_dbkc'
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=queenelizabeth
+      - POSTGRES_USER=gamma
+      - POSTGRES_DB=keycloak
+    volumes:
+      - '.docker/dbkc:/var/lib/postgresql/data'
+  keycloak:
+    container_name: 'gmovement_keycloak'
+    image: jboss/keycloak-postgres
+    depends_on:
+      - 'ldap'
+      - 'db'
+    ports:
+      - '8081:8080'
+    environment:
+      - KEYCLOAK_PASSWORD=queenelizabeth
+      - KEYCLOAK_USER=gamma
+      - POSTGRES_DATABASE=keycloak
+      - POSTGRES_USER=gamma
+      - POSTGRES_PASSWORD=queenelizabeth
+      - POSTGRES_PORT_5432_TCP_ADDR=db
+      - POSTGRES_PORT_5432_TCP_PORT=5432
+    links:
+      - 'ldap:ldap'
+      - 'db_kc:db'
