@@ -27,6 +27,4 @@ public class InvoiceService {
 	@Autowired
 	TripRepository tripRepository;
 
-
-
 }

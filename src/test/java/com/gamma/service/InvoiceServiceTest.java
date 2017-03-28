@@ -16,8 +16,6 @@ import java.util.Date;
 public class InvoiceServiceTest {
 	InvoiceService invoiceService;
 
-	public static final String DEST = "C:\\Users\\frank\\Documents\\Intellij\\S63-Gamma";
-
 	@Before
 	public void setUp() throws Exception {
 		invoiceService = Mockito.mock(InvoiceService.class);
@@ -33,7 +31,9 @@ public class InvoiceServiceTest {
 		InvoiceGenerator generator = new InvoiceGenerator();
 		Date date = new Date(100);
 		Invoice invoice = new Invoice(date, 678.00, 678.99, 0, "ASDSTASDG");
-		generator.createPdf("C:\\Users\\frank\\Documents\\appel.pdf", invoice, new Owner("adfadr", "adfadr", "adfadr", "adfadr", "adfadr", "adfadr"));
+		Owner owner = new Owner("frenkie", "pieterpannetjes2914@gmail.com", "Frank", "Hartman", "0612345678", "Eindhoven");
+
+		//generator.createPdf(ClassLoader.getSystemClassLoader().getResource("invoice.pdf").getPath(), invoice, owner);
 
 	}
 

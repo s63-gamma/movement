@@ -21,40 +21,69 @@ public class InvoiceGenerator {
 	Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
 	Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
 
-	public void createPdf(String dest, Invoice invoice, Owner owner) throws IOException, DocumentException {
+	/**
+	 * Create a invoice in pdf format based on invoice and user data
+	 * @param dest The document will be saved on this destination
+	 * @param invoice The invoice data
+	 * @param owner The owner of the invoice
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	public Document createPdf(String dest, Invoice invoice, Owner owner) throws IOException, DocumentException {
 		Document document = new Document(PageSize.A4);
 		PdfWriter.getInstance(document, new FileOutputStream(dest));
 		document.open();
 
+		// Add a title to the the invoice
 		document.add(createParagraph("Bill driver invoice" + invoice.getUuid() + " " + invoice.getDate()));
 		document.add(createParagraph(convertDate(invoice.getDate(), "MMM dd, yyyy")));
 
+		// Add info about the owner of the invoice
 		document.add(createInvoiceInfo(invoice, owner));
 
 		document.add(createParagraph(""));
 
+		// Create the price table of the invoice
 		document.add(createPriceTable(invoice));
 		document.add(createPaymentText(invoice));
 
 		document.close();
+		return document;
 	}
 
+	/**
+	 * Create a new paragraph
+	 * @param content
+	 * @return
+	 */
 	private Paragraph createParagraph(String content) {
 		Paragraph paragraph = new Paragraph(content, paragraphFont);
 		paragraph.setAlignment(Element.ALIGN_LEFT);
 		return paragraph;
 	}
 
+	/**
+	 * Create the section that show info about the invoice
+	 * @param invoice
+	 * @param owner
+	 * @return
+	 */
 	private PdfPTable createInvoiceInfo(Invoice invoice, Owner owner) {
-		PdfPTable phraseTable = new PdfPTable(2);
+		PdfPTable phraseTable = new PdfPTable(3);
 		phraseTable.setSpacingBefore(50);
 		phraseTable.addCell(listToCell(new String[] {owner.getName(), owner.getSurname(), owner.getPhoneNumber(), owner.getResidence()}));
 		phraseTable.addCell(listToCell(new String[] {invoice.getPaymentCode().toString(), invoice.getDate().toString()}));
+		phraseTable.addCell(listToCell(new String[] {"Guildhall, PO Box 270", "London EC2P 2EJ"}));
 
 		phraseTable.setWidthPercentage(100);
 		return phraseTable;
 	}
 
+	/**
+	 * Convert a list to a cell
+	 * @param content
+	 * @return
+	 */
 	PdfPCell listToCell(String[] content) {
 		List list = new List();
 		for (String c:
@@ -71,6 +100,11 @@ public class InvoiceGenerator {
 		return phraseCell;
 	}
 
+	/**
+	 * Create the section that shows the price of the invoice
+	 * @param invoice
+	 * @return
+	 */
 	private PdfPTable createPriceTable(Invoice invoice) {
 		PdfPTable table = new PdfPTable(2);
 		table.getDefaultCell().setFixedHeight(30);
