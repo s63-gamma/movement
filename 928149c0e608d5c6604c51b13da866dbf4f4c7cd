@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "719e45cf_e2485587",
+        "filename": "src/main/java/com/gamma/service/InvoiceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-03-28T11:22:43Z",
+      "side": 1,
+      "message": "Why is this class here",
+      "revId": "928149c0e608d5c6604c51b13da866dbf4f4c7cd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f6ce971_c57034e9",
+        "filename": "src/test/java/com/gamma/service/InvoiceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-03-28T11:22:43Z",
+      "side": 1,
+      "message": "make this relative to the execution path\ne.g. current workingdirectory (+ filesystem.seperator + file.pdf)\nMust be OS/filesystem independent.",
+      "revId": "928149c0e608d5c6604c51b13da866dbf4f4c7cd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c273e12_9c4f88c8",
+        "filename": "src/test/java/com/gamma/service/InvoiceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-03-28T11:22:43Z",
+      "side": 1,
+      "message": "What are you using mockito for?",
+      "revId": "928149c0e608d5c6604c51b13da866dbf4f4c7cd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f996adc6_386f28c7",
+        "filename": "src/test/java/com/gamma/service/InvoiceServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1010559
+      },
+      "writtenOn": "2017-03-28T11:22:43Z",
+      "side": 1,
+      "message": "Use the DEST variable and filesystem.separator to generate file path",
+      "revId": "928149c0e608d5c6604c51b13da866dbf4f4c7cd",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
