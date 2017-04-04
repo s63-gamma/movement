@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78330162_54a6acea",
+        "filename": "src/main/java/com/gamma/controller/InvoiceController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-04-04T13:26:37Z",
+      "side": 1,
+      "message": "This should not return void. We should at least send a success result back to the browser",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 12
+      },
+      "revId": "0b9c362bf03dab4083155fb868f40a47394d6073",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8a4a1cb_0b64318a",
+        "filename": "src/main/java/com/gamma/service/InvoiceService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1010557
+      },
+      "writtenOn": "2017-04-04T13:26:37Z",
+      "side": 1,
+      "message": "This could result in an exception when there are no results. You should use `carRepository.findAll().stream().findFirst().value` which would return null instead of throwing an exception.",
+      "revId": "0b9c362bf03dab4083155fb868f40a47394d6073",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
