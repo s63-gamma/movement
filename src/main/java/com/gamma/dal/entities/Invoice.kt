@@ -1,12 +1,8 @@
 package com.gamma.dal.entities
 
-import org.hibernate.annotations.GeneratorType
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent row in Invoice table
@@ -25,12 +21,17 @@ class Invoice {
     var status = 1
     var paymentCode = ""
 
-    constructor(date: Date, distance: Double, priceTotal: Double, status: Int, paymentCode: String) {
+    @ManyToOne
+    @JoinColumn(name = "invoice_id")
+    var owner: Owner? = null
+
+    constructor(date: Date, distance: Double, priceTotal: Double, status: Int, paymentCode: String, owner: Owner) {
         this.date = date
         this.distance = distance
         this.priceTotal = priceTotal
         this.status = status
         this.paymentCode = paymentCode
+        this.owner = owner
     }
 
     constructor()

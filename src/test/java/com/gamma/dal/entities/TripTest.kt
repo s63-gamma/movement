@@ -2,6 +2,7 @@ package com.gamma.dal.entities
 
 import com.gamma.repository.TripRepository
 import org.junit.Assert.assertNotNull
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,12 +15,23 @@ import org.springframework.test.context.junit4.SpringRunner
 @RunWith(SpringRunner::class)
 @SpringBootTest
 class TripTest{
+    lateinit var car: Car
+    lateinit var startGpsPoint: GpsPoint
+    lateinit var endGpsPoint: GpsPoint
+
     @Autowired
     lateinit var tripRepository: TripRepository
 
+    @Before
+    fun setupRegion() {
+        car = Car()
+        startGpsPoint = GpsPoint();
+        endGpsPoint = GpsPoint();
+    }
+
     @Test
     fun create(){
-        val trip = Trip(0.1, 1.1, 1.0)
+        val trip = Trip(startGpsPoint, endGpsPoint, 1.0, car)
         tripRepository.save(trip)
 
         assertNotNull(trip.uuid)
