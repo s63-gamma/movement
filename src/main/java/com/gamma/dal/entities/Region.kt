@@ -20,12 +20,12 @@ class Region {
 
     var name: String = ""
 
-    var longitude: Int = 0
-    var latitude: Int = 0
-    var radius: Int = 0
-    var costMultiplier: Int = 0
+    var longitude: Double = 0.0
+    var latitude: Double = 0.0
+    var radius: Double = 0.0
+    var costMultiplier: Double = 0.0
 
-    constructor(name: String, longitude: Int, latitude: Int, radius: Int, costMultiplier: Int) {
+    constructor(name: String, longitude: Double, latitude: Double, radius: Double, costMultiplier: Double) {
         this.name = name
         this.longitude = longitude
         this.latitude = latitude
@@ -33,5 +33,5 @@ class Region {
         this.costMultiplier = costMultiplier
     }
 
-    constructor() {}
+    constructor()
 }

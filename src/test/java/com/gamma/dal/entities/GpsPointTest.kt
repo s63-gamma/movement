@@ -17,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner
 @SpringBootTest
 class GpsPointTest {
     lateinit var region: Region
+    lateinit var trip: Trip
+    lateinit var tracker: Tracker
 
     @Autowired
     lateinit var gpsPointRepository: GpsPointRepository
@@ -26,14 +28,14 @@ class GpsPointTest {
 
     @Before
     fun setupRegion() {
-        region = Region("So far in the closet he's found narnia", 1, 1, 1, 1)
-        regionRepository.saveAndFlush(region)
+        region = Region()
+        trip = Trip()
+        tracker = Tracker()
     }
 
     @Test
     fun createGpsPoint() {
-        val gpsPoint = GpsPoint(1.0, 1.0, 1)
-        gpsPoint.region = region
+        val gpsPoint = GpsPoint(1.0, 1.0, 1, region, tracker)
         gpsPointRepository.save(gpsPoint)
 
         assertNotNull(gpsPoint.uuid)

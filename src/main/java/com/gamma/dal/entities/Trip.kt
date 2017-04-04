@@ -2,10 +2,7 @@ package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent Trip table
@@ -18,14 +15,25 @@ class Trip {
     @Column(unique = true)
     val uuid: UUID? = null
 
-    var startPoint: Double = 0.0
-    var endPoint: Double = 0.0
     var totalDistance: Double = 0.0
 
-    constructor(startPoint: Double, endPoint: Double, totalDistance: Double) {
+    @ManyToOne
+    @JoinColumn(name = "gpsPoint_start_id")
+    var startPoint: GpsPoint? = null
+
+    @ManyToOne
+    @JoinColumn(name = "gpsPoint_end_id")
+    var endPoint: GpsPoint? = null
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    var car: Car? = null
+
+    constructor(startPoint: GpsPoint, endPoint: GpsPoint, totalDistance: Double, car: Car) {
         this.startPoint = startPoint
         this.endPoint = endPoint
         this.totalDistance = totalDistance
+        this.car = car
     }
 
     constructor()

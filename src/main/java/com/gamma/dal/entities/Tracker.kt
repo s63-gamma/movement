@@ -2,10 +2,7 @@ package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent tracker table
@@ -22,10 +19,15 @@ class Tracker {
     var serialNumber: Int = 0
     var type = ""
 
-    constructor(authorisationCode: Int, serialNumber: Int, type: String) {
+    @OneToMany(cascade = arrayOf(CascadeType.ALL))
+    @JoinColumn(name = "tracker_id")
+    var trackerCar: Collection<Tracker_Car> = ArrayList()
+
+    constructor(authorisationCode: Int, serialNumber: Int, type: String, trackerCar: Collection<Tracker_Car>) {
         this.authorisationCode = authorisationCode
         this.serialNumber = serialNumber
         this.type = type
+        this.trackerCar = trackerCar
     }
 
     constructor()
