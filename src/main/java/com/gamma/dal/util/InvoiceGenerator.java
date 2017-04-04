@@ -8,8 +8,10 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -18,20 +20,20 @@ import java.util.*;
  */
 public class InvoiceGenerator {
 
-	Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
-	Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
+	static Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16, Font.BOLDITALIC);
+	static Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12, Font.NORMAL);
 
 	/**
 	 * Create a invoice in pdf format based on invoice and user data
-	 * @param dest The document will be saved on this destination
 	 * @param invoice The invoice data
 	 * @param owner The owner of the invoice
 	 * @throws IOException
 	 * @throws DocumentException
 	 */
-	public Document createPdf(String dest, Invoice invoice, Owner owner) throws IOException, DocumentException {
+	public static ByteArrayOutputStream createInvoice(Invoice invoice, Owner owner) throws IOException, DocumentException {
 		Document document = new Document(PageSize.A4);
-		PdfWriter.getInstance(document, new FileOutputStream(dest));
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		PdfWriter.getInstance(document, outputStream);
 		document.open();
 
 		// Add a title to the the invoice
@@ -48,7 +50,8 @@ public class InvoiceGenerator {
 		document.add(createPaymentText(invoice));
 
 		document.close();
-		return document;
+
+		return outputStream;
 	}
 
 	/**
@@ -56,7 +59,7 @@ public class InvoiceGenerator {
 	 * @param content
 	 * @return
 	 */
-	private Paragraph createParagraph(String content) {
+	private static Paragraph createParagraph(String content) {
 		Paragraph paragraph = new Paragraph(content, paragraphFont);
 		paragraph.setAlignment(Element.ALIGN_LEFT);
 		return paragraph;
@@ -68,7 +71,7 @@ public class InvoiceGenerator {
 	 * @param owner
 	 * @return
 	 */
-	private PdfPTable createInvoiceInfo(Invoice invoice, Owner owner) {
+	private static PdfPTable createInvoiceInfo(Invoice invoice, Owner owner) {
 		PdfPTable phraseTable = new PdfPTable(3);
 		phraseTable.setSpacingBefore(50);
 		phraseTable.addCell(listToCell(new String[] {owner.getName(), owner.getSurname(), owner.getPhoneNumber(), owner.getResidence()}));
@@ -84,7 +87,7 @@ public class InvoiceGenerator {
 	 * @param content
 	 * @return
 	 */
-	PdfPCell listToCell(String[] content) {
+	private  static PdfPCell listToCell(String[] content) {
 		List list = new List();
 		for (String c:
 			 content) {
@@ -105,7 +108,7 @@ public class InvoiceGenerator {
 	 * @param invoice
 	 * @return
 	 */
-	private PdfPTable createPriceTable(Invoice invoice) {
+	private static PdfPTable createPriceTable(Invoice invoice) {
 		PdfPTable table = new PdfPTable(2);
 		table.getDefaultCell().setFixedHeight(30);
 		table.setWidthPercentage(100);
@@ -127,13 +130,13 @@ public class InvoiceGenerator {
 		return table;
 	}
 
-	private Paragraph createPaymentText(Invoice invoice) {
+	private static Paragraph createPaymentText(Invoice invoice) {
 		Paragraph paragraph = new Paragraph("Please make sure to pay with invoice code " + invoice.getPaymentCode());
 		paragraph.setAlignment(Element.ALIGN_BOTTOM);
 		return paragraph;
 	}
 
-	public String convertDate(Date d, String newFormat) {
+	public static String convertDate(Date d, String newFormat) {
 		SimpleDateFormat sdf = new SimpleDateFormat(newFormat);
 		return sdf.format(d);
 	}
