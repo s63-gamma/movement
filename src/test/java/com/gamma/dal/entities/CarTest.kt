@@ -38,7 +38,7 @@ class CarTest{
                 "NE-UK-69",
                 20000.0,
                 800.85,
-                "Sedan",
+                CarType.SEDAN,
                 false,
                 carOwner,
                 rate,

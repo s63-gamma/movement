@@ -2,10 +2,8 @@ package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
+import kotlin.collections.ArrayList
 
 /**
  * Entity to represent trip database table
@@ -22,10 +20,14 @@ class Rate {
     var cost = 0
     var name = ""
 
-    constructor(type: String, cost: Int, name: String) {
+    @OneToMany(cascade = arrayOf(CascadeType.MERGE), mappedBy = "rate")
+    var cars: Collection<Car> = ArrayList()
+
+    constructor(type: String, cost: Int, name: String, cars: Collection<Car> = ArrayList()) {
         this.type = type
         this.cost = cost
         this.name = name
+        this.cars = cars
     }
 
     constructor()

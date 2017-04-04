@@ -2,10 +2,7 @@ package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Represent tracker table
@@ -18,10 +15,16 @@ class Tracker_Car {
     @Column(unique = true)
     val uuid: UUID? = null
 
-    var startDate = Date()
-    var endDate = Date()
+    @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
+    lateinit var car: Car
 
-    constructor(startDate: Date, endDate: Date) {
+    @ManyToOne(cascade = arrayOf(CascadeType.MERGE))
+    lateinit var tracker: Tracker
+
+    var startDate = Date()
+    var endDate: Date? = null
+
+    constructor(startDate: Date, endDate: Date? = null) {
         this.startDate = startDate
         this.endDate = endDate
     }
