@@ -1,4 +1,4 @@
-package com.gamma.dal.util;
+package com.gamma.invoice;
 
 import com.gamma.dal.entities.Invoice;
 import com.gamma.dal.entities.Owner;

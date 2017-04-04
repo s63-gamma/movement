@@ -1,16 +1,19 @@
-package com.gamma.dal.util;
+package com.gamma.invoice;
 
+import com.gamma.dal.entities.Invoice;
+import com.gamma.dal.entities.Owner;
+import com.itextpdf.text.DocumentException;
 import javassist.bytecode.stackmap.TypeData;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
+import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
@@ -29,13 +32,67 @@ public class SendMailTLS {
 	final static String password = "123Welkom";
 
 	/**
+	 * Send a single invoice with standard description
+	 * @param owner The owner of the invoice
+	 * @param invoice The invoice itself
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	public static void sendInvoice(Owner owner, Invoice invoice) throws IOException, DocumentException {
+		ByteArrayOutputStream outputStream = InvoiceGenerator.createInvoice(invoice,owner);
+		sendMail(outputStream, "Standard subject", "Standard content", "Standard pdf name", owner.getEmailadres());
+	}
+
+	/**
+	 * Send a single invoice
+	 * @param owner The owner of the invoice
+	 * @param invoice The invoice itself
+	 * @param subject The subject of the email
+	 * @param content The content of the email
+	 * @param pdfName The name name of the pdf
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	public static void sendInvoice(Owner owner, Invoice invoice, String subject, String content, String pdfName) throws IOException, DocumentException {
+		ByteArrayOutputStream outputStream = InvoiceGenerator.createInvoice(invoice, owner);
+		sendMail(outputStream, subject, content, pdfName, owner.getEmailadres());
+	}
+
+	/**
+	 * Send multiple invoices at the same time with a standard email description
+	 * @param addresses The owners with invoices
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	public static void sendInvoices(Map<Owner, Invoice> addresses) throws IOException, DocumentException {
+		for (Map.Entry<Owner, Invoice> entry : addresses.entrySet()) {
+			sendInvoice(entry.getKey(), entry.getValue());
+		}
+	}
+
+	/**
+	 * Send multiple invoices at the same time
+	 * @param addresses The owners with invoices
+	 * @param subject The subject of the email
+	 * @param content The content of the email
+	 * @param pdfName The name of the pdf
+	 * @throws IOException
+	 * @throws DocumentException
+	 */
+	public static void sendInvoices(Map<Owner, Invoice> addresses, String subject, String content, String pdfName) throws IOException, DocumentException {
+		for (Map.Entry<Owner, Invoice> entry : addresses.entrySet()) {
+			sendInvoice(entry.getKey(), entry.getValue(), subject, content, pdfName);
+		}
+	}
+
+	/**
 	 * Send a mail with a give attachement
 	 * @param subject The subject of the email
 	 * @param content The content of the mail
 	 * @param pdfName The name of the pdf attachement
 	 * @param address The target email address
 	 */
-	public static void sendMail(ByteArrayOutputStream outputStream, String subject, String content, String pdfName, String address) {
+	private static void sendMail(ByteArrayOutputStream outputStream, String subject, String content, String pdfName, String address) {
 
 		Properties props = getProperties();
 		Session session = Session.getInstance(props,
@@ -48,6 +105,7 @@ public class SendMailTLS {
 		Multipart attachement = createAttachement(outputStream, pdfName, content);
 		transportMail(session, attachement, subject, address);
 	}
+
 
 	private static Properties getProperties() {
 		Properties props = new Properties();

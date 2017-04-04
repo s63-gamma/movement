@@ -2,8 +2,10 @@ package com.gamma;
 
 import com.gamma.dal.entities.Car;
 import com.gamma.dal.entities.Invoice;
+import com.gamma.dal.entities.Owner;
 import com.gamma.repository.CarRepository;
 import com.gamma.repository.InvoiceRepository;
+import com.gamma.repository.OwnerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,8 +29,9 @@ public class GMovementApplication extends SpringBootServletInitializer {
 	}
 
 	@Bean
-	public CommandLineRunner demo(InvoiceRepository invoiceRepository, CarRepository carRepository) {
+	public CommandLineRunner demo(InvoiceRepository invoiceRepository, CarRepository carRepository, OwnerRepository ownerRepository) {
 		return (args) -> {
+			// Add invoices
 			ArrayList<Invoice> invoices = new ArrayList<>();
 			invoices.add(new Invoice(new Date(), 0, 200, 0, "Hallo"));
 			invoices.add(new Invoice(new Date(), 0, 40, 1, "Hallo"));
@@ -41,9 +44,18 @@ public class GMovementApplication extends SpringBootServletInitializer {
 
 			invoices.forEach(invoiceRepository::save);
 
+			// Add cars
 			ArrayList<Car> cars = new ArrayList<>();
 			cars.add(new Car(1994,"NE-UK-69",20000.0,420.0, "Sedan"));
 			cars.forEach(carRepository::save);
+
+			// Add owners
+			ArrayList<Owner> owners = new ArrayList<>();
+			owners.add(new Owner("Martijn", "Jintarmlubu@gmail.com", "Martijn", "van Buul", "0612345678", "England"));
+			owners.add(new Owner("Frank", "frankhartman96@gmail.com", "Frank", "Hartman", "0612345678", "England"));
+			owners.add(new Owner("Guus", "guushamm@gmail.com", "Guus", "Hamm", "0612345678", "England"));
+			owners.add(new Owner("Rick", "r.rongen@student.fontys.nl ", "Rick", "Rongen", "0612345678", "England"));
+			owners.forEach(ownerRepository::save);
 		};
 	}
 
