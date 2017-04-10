@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @RunWith(SpringRunner::class)
 @SpringBootTest
 class TripTest{
-    lateinit var car: Car
+    lateinit var tracker: Tracker
     lateinit var startGpsPoint: GpsPoint
     lateinit var endGpsPoint: GpsPoint
 
@@ -24,14 +24,14 @@ class TripTest{
 
     @Before
     fun setupRegion() {
-        car = Car()
-        startGpsPoint = GpsPoint();
-        endGpsPoint = GpsPoint();
+        tracker = Tracker()
+        startGpsPoint = GpsPoint()
+        endGpsPoint = GpsPoint()
     }
 
     @Test
     fun create(){
-        val trip = Trip(startGpsPoint, endGpsPoint, 1.0, car)
+        val trip = Trip(startGpsPoint, endGpsPoint, 1.0, tracker)
         tripRepository.save(trip)
 
         assertNotNull(trip.uuid)

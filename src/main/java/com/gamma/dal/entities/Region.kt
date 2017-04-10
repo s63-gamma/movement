@@ -2,10 +2,8 @@ package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by requinard on 2/21/17.
@@ -22,15 +20,23 @@ class Region {
 
     var longitude: Double = 0.0
     var latitude: Double = 0.0
-    var radius: Double = 0.0
+    var radius: Int = 0
     var costMultiplier: Double = 0.0
 
-    constructor(name: String, longitude: Double, latitude: Double, radius: Double, costMultiplier: Double) {
+    @OneToMany
+    @JoinTable(
+            name = "region_gpspoint",
+            joinColumns =  arrayOf(JoinColumn(name = "gpsPointId",columnDefinition = "uuid")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "regionId", columnDefinition = "uuid")))
+    var gpsPoints: Collection<GpsPoint> = ArrayList()
+
+    constructor(name: String, latitude: Double, longitude: Double, radius: Int, costMultiplier: Double, gpsPoints: Collection<GpsPoint> = ArrayList()) {
         this.name = name
         this.longitude = longitude
         this.latitude = latitude
         this.radius = radius
         this.costMultiplier = costMultiplier
+        this.gpsPoints = gpsPoints
     }
 
     constructor()

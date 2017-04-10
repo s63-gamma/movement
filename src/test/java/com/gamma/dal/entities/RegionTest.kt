@@ -20,7 +20,7 @@ class RegionTest {
     @Test
     @Throws(Exception::class)
     fun createRegion() {
-        val region = Region("MANC UNITED", 1.0, 1.0, 1.0, 1.0)
+        val region = Region("MANC UNITED", 1.0, 1.0, 1, 1.0)
         regionRepository.save(region)
 
         assertNotNull(region.uuid)

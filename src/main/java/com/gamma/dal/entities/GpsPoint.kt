@@ -1,8 +1,8 @@
 package com.gamma.dal.entities
 
 import org.hibernate.annotations.GenericGenerator
+import java.time.Instant
 import java.util.*
-
 import javax.persistence.*
 
 /**
@@ -19,21 +19,29 @@ class GpsPoint {
     var longitude: Double = 0.toDouble()
     var latitude: Double = 0.toDouble()
     var sequenceNumber: Int = 0
+    var date: Instant = Instant.now()
 
     @ManyToOne
-    @JoinColumn(name = "region_id")
+    @JoinTable(
+            name = "region_gpspoint",
+            joinColumns =  arrayOf(JoinColumn(name = "regionId",columnDefinition = "uuid")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "gpsPointId", columnDefinition = "uuid")))
     var region: Region? = null
 
     @ManyToOne
-    @JoinColumn(name = "tracker_id")
+    @JoinTable(
+            name = "tracker_gpspoints",
+            joinColumns =  arrayOf(JoinColumn(name = "trackerId",columnDefinition = "uuid")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "gpsPointId", columnDefinition = "uuid")))
     var tracker: Tracker? = null
 
-    constructor(longitude: Double, latitude: Double, sequenceNumber: Int, region: Region, tracker: Tracker) {
+    constructor(longitude: Double, latitude: Double, sequenceNumber: Int, region: Region, tracker: Tracker, date: Instant = Instant.now()) {
         this.longitude = longitude
         this.latitude = latitude
         this.sequenceNumber = sequenceNumber
-        this.region = region;
+        this.region = region
         this.tracker = tracker
+        this.date = date
     }
 
     constructor() {}

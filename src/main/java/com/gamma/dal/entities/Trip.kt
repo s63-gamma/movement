@@ -26,14 +26,16 @@ class Trip {
     var endPoint: GpsPoint? = null
 
     @ManyToOne
-    @JoinColumn(name = "car_id")
-    var car: Car? = null
+    @JoinTable(name = "tracker_trip",
+            joinColumns = arrayOf(JoinColumn(name = "tripId", referencedColumnName = "uuid")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "trackerId", referencedColumnName = "uuid")))
+    var tracker: Tracker? = null
 
-    constructor(startPoint: GpsPoint, endPoint: GpsPoint, totalDistance: Double, car: Car) {
+    constructor(startPoint: GpsPoint, endPoint: GpsPoint, totalDistance: Double, tracker: Tracker) {
         this.startPoint = startPoint
         this.endPoint = endPoint
         this.totalDistance = totalDistance
-        this.car = car
+        this.tracker = tracker
     }
 
     constructor()
