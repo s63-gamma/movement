@@ -3,6 +3,7 @@ package com.gamma.dal.entities
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.*
+import kotlin.collections.ArrayList
 
 /**
  * Represent Owner table in database
@@ -12,7 +13,7 @@ class Owner {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    @Column(unique = true, name = "ID")
+    @Column(unique = true)
     val uuid: UUID? = null
 
     var username = ""
@@ -23,10 +24,13 @@ class Owner {
     var residence = ""
 
     @OneToMany(cascade = arrayOf(CascadeType.ALL))
-    @JoinColumn(name = "car_id")
+    @JoinTable(
+            name = "join_owner_car",
+            joinColumns =  arrayOf(JoinColumn(name = "ownerId",columnDefinition = "uuid")),
+            inverseJoinColumns = arrayOf(JoinColumn(name = "carOwnerId", columnDefinition = "uuid")))
     var carOwner: Collection<Car_Owner> = ArrayList()
 
-    constructor(username: String, emailadres: String, name: String, surname: String, phoneNumber: String, residence: String, carOwner: Collection<Car_Owner>) {
+    constructor(username: String, emailadres: String, name: String, surname: String, phoneNumber: String, residence: String, carOwner: Collection<Car_Owner> = ArrayList()) {
         this.username = username
         this.emailadres = emailadres
         this.name = name

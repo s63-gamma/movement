@@ -28,7 +28,7 @@ class TrackerTest{
 
     @Test
     fun create(){
-        val tracker = Tracker(1, 2, "hopsakee", trackerCar)
+        val tracker = Tracker(1, 2, TrackerType.GPS, trackerCar)
 
         trackerRepository.save(tracker)
 
