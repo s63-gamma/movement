@@ -4,6 +4,7 @@ import com.gamma.dal.entities.*
 import com.gamma.repository.*
 import com.github.javafaker.Faker
 import org.springframework.boot.CommandLineRunner
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.builder.SpringApplicationBuilder
 import org.springframework.boot.web.support.SpringBootServletInitializer
@@ -16,6 +17,12 @@ open class GMovementApplication : SpringBootServletInitializer() {
 
     override fun configure(application: SpringApplicationBuilder): SpringApplicationBuilder {
         return application.sources(GMovementApplication::class.java)
+    }
+
+    companion object {
+        @JvmStatic fun main(args: Array<String>) {
+            SpringApplication.run(GMovementApplication::class.java, *args)
+        }
     }
 
     @Bean

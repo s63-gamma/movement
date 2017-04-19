@@ -1,5 +1,12 @@
 version: "2"
 services:
+  spring:
+    container_name: 'gmovement'
+    image: gamma/g-movement
+    ports:
+      - '8080:8080'
+    links:
+      - 'db:db'
   db:
     container_name: 'gmovement_db'
     image: postgres:alpine
