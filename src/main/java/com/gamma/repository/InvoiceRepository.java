@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "invoice", path = "invoice")
 public interface InvoiceRepository extends JpaRepository<Invoice, UUID> {
+
 }

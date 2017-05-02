@@ -3,7 +3,7 @@ package com.gamma.dal.entities
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.*
-import kotlin.collections.ArrayList
+import kotlin.collections.*
 
 /**
  * Represent car table
