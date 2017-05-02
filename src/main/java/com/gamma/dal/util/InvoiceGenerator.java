@@ -26,11 +26,10 @@ public class InvoiceGenerator {
 	/**
 	 * Create a invoice in pdf format based on invoice and user data
 	 * @param invoice The invoice data
-	 * @param owner The owner of the invoice
 	 * @throws IOException
 	 * @throws DocumentException
 	 */
-	public static ByteArrayOutputStream createInvoice(Invoice invoice, Owner owner) throws IOException, DocumentException {
+	public static ByteArrayOutputStream createInvoice(Invoice invoice) throws IOException, DocumentException {
 		Document document = new Document(PageSize.A4);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		PdfWriter.getInstance(document, outputStream);
@@ -41,7 +40,7 @@ public class InvoiceGenerator {
 		document.add(createParagraph(convertDate(invoice.getDate(), "MMM dd, yyyy")));
 
 		// Add info about the owner of the invoice
-		document.add(createInvoiceInfo(invoice, owner));
+		document.add(createInvoiceInfo(invoice));
 
 		document.add(createParagraph(""));
 
@@ -68,12 +67,13 @@ public class InvoiceGenerator {
 	/**
 	 * Create the section that show info about the invoice
 	 * @param invoice
-	 * @param owner
 	 * @return
 	 */
-	private static PdfPTable createInvoiceInfo(Invoice invoice, Owner owner) {
+	private static PdfPTable createInvoiceInfo(Invoice invoice) {
 		PdfPTable phraseTable = new PdfPTable(3);
 		phraseTable.setSpacingBefore(50);
+
+		Owner owner = invoice.getOwner();
 		phraseTable.addCell(listToCell(new String[] {owner.getName(), owner.getSurname(), owner.getPhoneNumber(), owner.getResidence()}));
 		phraseTable.addCell(listToCell(new String[] {invoice.getPaymentCode().toString(), invoice.getDate().toString()}));
 		phraseTable.addCell(listToCell(new String[] {"Guildhall, PO Box 270", "London EC2P 2EJ"}));
