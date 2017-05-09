@@ -28,7 +28,18 @@ open class GMovementApplication : SpringBootServletInitializer() {
     @Bean
     open fun init(invoiceRepository: InvoiceRepository, carRepository: CarRepository, ownerRepository: OwnerRepository, rateRepository: RateRepository, regionRepository: RegionRepository, trackerRepository: TrackerRepository, gpsPointRepository: GpsPointRepository, tripRepository: TripRepository, car_ownerRepository: Car_OwnerRepository, tracker_carRepository: Tracker_CarRepository) = CommandLineRunner {
         val faker: Faker = Faker()
+
         val owners = ArrayList<Owner>()
+        val demoOwner = Owner(
+                username = "GerbenGerritsen",
+                emailadres = "gerben@gerritsen.nl",
+                name = "Gerben",
+                surname = "Gerritsen",
+                phoneNumber = faker.phoneNumber().cellPhone(),
+                residence = faker.address().fullAddress(),
+                carOwner = ArrayList())
+
+        owners.add(demoOwner)
         for (i in 1..20) {
             val firstName = faker.name().firstName()
             val lastName = faker.name().lastName()
@@ -142,11 +153,22 @@ open class GMovementApplication : SpringBootServletInitializer() {
 //        trips.forEach { tripRepository.save(it) }
 
         val invoices = ArrayList<Invoice>()
-        for (i in 1..20) {
+        for (i in 1..4) {
             invoices.add(Invoice(
                     date = Date(),
                     distance = faker.number().numberBetween(0, 2000).toDouble(),
                     priceTotal = faker.number().numberBetween(0, 10000).toDouble(),
+                    status = faker.number().numberBetween(0, 1),
+                    paymentCode = faker.bothify("##???#?#?"),
+                    owner = demoOwner
+            ))
+        }
+
+        for (i in 1..20) {
+            invoices.add(Invoice(
+                    date = Date(),
+                    distance = faker.number().numberBetween(0, 2000).toDouble(),
+                    priceTotal = faker.number().numberBetween(0, 1000).toDouble(),
                     status = faker.number().numberBetween(0, 1),
                     paymentCode = faker.bothify("##???#?#?"),
                     owner = owners[faker.random().nextInt(owners.size)]
@@ -162,6 +184,7 @@ open class GMovementApplication : SpringBootServletInitializer() {
 
 //                val carOwner: Car_Owner = Car_Owner(startDate = faker.date().past(200000000, TimeUnit.MILLISECONDS), endDate = faker.date().future(500000000, TimeUnit.MILLISECONDS))
 //                carOwner.owner = owners[faker.random().nextInt(owners.size)]
+//                carOwner.car = car
 //                car.carOwner += carOwner
             }
 
