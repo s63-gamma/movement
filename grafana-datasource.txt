@@ -1,0 +1,11 @@
+Name: InfluxDB GMovement
+Type: InfluxDB
+
+Url: http://influxdb:8086
+Access: Proxy
+
+HTTP Auth: NADA
+
+Database: gmovement
+User: root
+password: root

@@ -8,6 +8,7 @@ services:
     links:
       - 'db:db'
       - 'ldap:ldap'
+      - 'influxdb:influxdb'
   db:
     container_name: 'gmovement_db'
     image: postgres:alpine
@@ -30,6 +31,27 @@ services:
     volumes:
       - '.docker/ldap-conf:/etc/ldap'
       - '.docker/ldap-data:/var/lib/ldap'
+  grafana:
+    container_name: 'grafana'
+    image: grafana/grafana
+    ports:
+     - '80:3000'
+    environment:
+     - 'GF_SECURITY_ADMIN_PASSWORD=queenelizabeth'
+    volumes:
+     - '.docker/grafana:/var/lib/grafana'
+    links:
+     - 'influxdb:influxdb'
+  influxdb:
+    container_name: 'influxdb'
+    image: tutum/influxdb
+    ports:
+      - '8083:8083'
+      - '8086:8086'
+    environment:
+      - 'PRE_CREATE_DB=gmovement'
+    volumes:
+      - '.docker/influxdb:/data'
 #  db_kc:
 #    container_name: 'gmovement_dbkc'
 #    image: postgres:alpine

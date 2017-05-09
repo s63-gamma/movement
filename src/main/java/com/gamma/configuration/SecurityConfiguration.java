@@ -47,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 				.addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)
 				.csrf().disable()
-				.authorizeRequests().anyRequest().fullyAuthenticated()
+				.authorizeRequests()
+				.anyRequest().fullyAuthenticated()
 				.and().httpBasic();
 	}
 
@@ -61,7 +62,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.contextSource(contextSource())
 				.passwordCompare()
 				.passwordEncoder(new LdapShaPasswordEncoder())
-				.passwordAttribute(ldappasswordAttibute);
+				.passwordAttribute(ldappasswordAttibute)
+				.and().userDetailsContextMapper(new CredentialsRoleMapper());
 	}
 
 	@Bean
