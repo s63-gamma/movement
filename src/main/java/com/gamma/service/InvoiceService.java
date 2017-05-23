@@ -57,6 +57,20 @@ public class InvoiceService {
 		ResponseEntity<byte[]> response = new ResponseEntity<byte[]>(contents, headers, HttpStatus.OK);
 		return response;
 	}
+	
+	@RequestMapping(value = "/mailInvoice/{id}")
+	public ResponseEntity mailInvoice(@PathVariable("id") UUID id) throws IOException, DocumentException {
+			Invoice invoice = invoiceRepository.getOne(id);
+			if (invoice == null)
+				throw new NullPointerException();
+
+			InvoiceGenerator generator = new InvoiceGenerator();
+			ByteArrayOutputStream outputStream = generator.createInvoice(invoice);
+			SendMailTLS.sendMail(outputStream, "Invoice " + invoice.getDate().toString(), "Please pay this invoice",
+					invoice.getDate().toString(), invoice.getOwner().getEmailadres());
+
+			return ResponseEntity.ok().build();
+		}
 
 
 }
