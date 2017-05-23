@@ -3,6 +3,7 @@ package com.gamma.service;
 import com.gamma.dal.entities.Invoice;
 import com.gamma.dal.entities.Owner;
 import com.gamma.dal.entities.Trip;
+import com.gamma.dal.util.SendMailTLS;
 import com.gamma.dal.util.InvoiceGenerator;
 import com.gamma.repository.InvoiceRepository;
 import com.gamma.repository.TripRepository;
