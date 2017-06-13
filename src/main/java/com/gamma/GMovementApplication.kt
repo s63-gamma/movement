@@ -72,6 +72,11 @@ open class GMovementApplication : SpringBootServletInitializer() {
                 type = "Outercity",
                 cost = 10,
                 name = "Outercity tax"))
+        rates.add(Rate(
+                type = "Foreign",
+                cost = 10,
+                name = "Foreign country tax"
+        ))
 
 
         rates.forEach { rateRepository.save(it) }
