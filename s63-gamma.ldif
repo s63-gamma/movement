@@ -25,9 +25,10 @@ dn: uid=guushamm,ou=users,dc=swaggabros,dc=nl
 objectClass: simpleSecurityObject
 objectClass: top
 objectClass: person
-objectClass: organisationalPerson
+objectClass: organizationalPerson
 objectClass: inetOrgPerson
 cn: Guus
 sn: Hamm
 userPassword: e1NTSEF9YWxXOHV6R1VTM0taMXZ0bDJ1WU5hWHM1SGJYVGNPeHQrZWNHZGc9PQ==
 uid: guushamm
+
