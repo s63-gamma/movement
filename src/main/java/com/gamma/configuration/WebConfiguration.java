@@ -32,4 +32,9 @@ public class WebConfiguration {
 	public MetricsEndpointMetricReader metricsEndpointMetricReader(MetricsEndpoint metricsEndpoint) {
 		return new MetricsEndpointMetricReader(metricsEndpoint);
 	}
+
+	@Bean
+	public IntegrationConfiguration integrationConfiguration(){
+		return new IntegrationConfiguration();
+	}
 }

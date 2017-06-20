@@ -1,8 +1,10 @@
 package com.gamma
 
+import com.gamma.configuration.IntegrationConfiguration
 import com.gamma.dal.entities.*
 import com.gamma.repository.*
 import com.github.javafaker.Faker
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -24,6 +26,9 @@ open class GMovementApplication : SpringBootServletInitializer() {
             SpringApplication.run(GMovementApplication::class.java, *args)
         }
     }
+
+    @Autowired
+    lateinit var integrationConfiguration: IntegrationConfiguration
 
     @Bean
     open fun init(invoiceRepository: InvoiceRepository, carRepository: CarRepository, ownerRepository: OwnerRepository, rateRepository: RateRepository, regionRepository: RegionRepository, trackerRepository: TrackerRepository, gpsPointRepository: GpsPointRepository, tripRepository: TripRepository, car_ownerRepository: Car_OwnerRepository, tracker_carRepository: Tracker_CarRepository) = CommandLineRunner {
@@ -139,7 +144,7 @@ open class GMovementApplication : SpringBootServletInitializer() {
                     licensePlate = faker.bothify("??##-???", true),
                     weight = faker.number().numberBetween(500, 40000).toDouble(),
                     milage = faker.number().randomDouble(1, 0, 350000),
-                    type = CarType.values()[CarType.values().size - 1],
+                    type = CarType.values()[faker.random().nextInt(CarType.values().size - 1)], //NOTE exclude FOREIGN
                     rate = rates[faker.random().nextInt(rates.size)]
             ))
         }
@@ -195,6 +200,8 @@ open class GMovementApplication : SpringBootServletInitializer() {
 
         }
         cars.forEach { carRepository.save(it) }
+
+        integrationConfiguration.initialize()
     }
 
 }

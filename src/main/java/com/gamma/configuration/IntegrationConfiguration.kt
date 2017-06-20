@@ -13,18 +13,17 @@ import com.gmail.guushamm.EuropeanIntegration.Countries
 import com.gmail.guushamm.EuropeanIntegration.StolenCar
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Configuration
-import javax.print.attribute.standard.Destination
+import org.springframework.stereotype.Component
 
 /**
  * Created by guushamm on 21-3-17.
  */
-@Configuration
-class IntegrationConfiguration {
+@Component
+open class IntegrationConfiguration {
     val gson: Gson by lazy { Gson() }
 
     @Autowired
-    lateinit var carRepostory: CarRepository
+    lateinit var carRepository: CarRepository
 
     @Autowired
     lateinit var invoiceRepository: InvoiceRepository
@@ -37,12 +36,13 @@ class IntegrationConfiguration {
 
     val connector: Connector = Connector()
 
-    init {
+    fun initialize() {
+        System.out.println("YO BOY, INTEGRATION")
         connector.prepare()
         connector.subscribeToQueue(Countries.UNITED_KINGDOM, com.gmail.guushamm.EuropeanIntegration.Car::class.java, { message: String ->
             val recievedCar: com.gmail.guushamm.EuropeanIntegration.Car = gson.fromJson(message, com.gmail.guushamm.EuropeanIntegration.Car::class.java)
 
-            val cars = carRepostory.findByLicensePlate(recievedCar.licensePlate)
+            val cars = carRepository.findByLicensePlate(recievedCar.licensePlate)
 
             if (cars.size == 0) {
 
@@ -54,17 +54,17 @@ class IntegrationConfiguration {
                         type = CarType.FOREIGN,
                         isStolen = false,
                         carOwner = emptyList<Car_Owner>(),
-                        rate = rateRepository.findByName("Foreign"),
+                        rate = rateRepository.findByType("Foreign"),
                         trackerCar = emptyList()
                 )
 
-                carRepostory.save(car)
+                carRepository.save(car)
             }
         })
         connector.subscribeToQueue(Countries.UNITED_KINGDOM, com.gmail.guushamm.EuropeanIntegration.Invoice::class.java, {message: String ->
             val recievedInvoice = gson.fromJson(message, com.gmail.guushamm.EuropeanIntegration.Invoice::class.java)
 
-            val cars = carRepostory.findByLicensePlate(recievedInvoice.licensePlate)
+            val cars = carRepository.findByLicensePlate(recievedInvoice.licensePlate)
 
             if(cars.size == 0){
                 //TODO FATAL not found, not mine?
@@ -92,14 +92,14 @@ class IntegrationConfiguration {
         connector.subscribeToQueue(Countries.UNITED_KINGDOM, StolenCar::class.java, {message: String ->
             val stolenCar = gson.fromJson(message, com.gmail.guushamm.EuropeanIntegration.StolenCar::class.java)
 
-            val cars = carRepostory.findByLicensePlate(stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin))
+            val cars = carRepository.findByLicensePlate(stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin))
             if(cars.size == 0){
                 //TODO FATAL car not found in our system
                 return@subscribeToQueue
             }
             val car = cars.first()
             car.isStolen = stolenCar.stolenCar
-            carRepostory.save(car)
+            carRepository.save(car)
         })
     }
 
