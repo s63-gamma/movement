@@ -48,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class)
 				.csrf().disable()
 				.authorizeRequests()
-				.anyRequest().fullyAuthenticated()
+				.antMatchers("/createuser").permitAll()
+				.anyRequest().authenticated()
 				.and().httpBasic();
 	}
 

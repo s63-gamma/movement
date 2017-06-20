@@ -14,6 +14,15 @@
         <version>1.5.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+
+    <repositories>
+        <repository>
+            <id>maven-group</id>
+            <url>http://192.168.24.131:8081/repository/maven-group/</url>
+        </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -150,7 +159,11 @@
             <version>1.4.7</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.gmail.guushamm</groupId>
+            <artifactId>EuropeanIntegration</artifactId>
+            <version>LATEST</version>
+        </dependency>
 
 
     </dependencies>

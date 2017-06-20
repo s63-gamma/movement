@@ -11,4 +11,6 @@ import java.util.UUID;
 @RepositoryRestResource(collectionResourceRel = "car", path = "car")
 public interface CarRepository extends JpaRepository<Car, UUID> {
 	List<Car> findByBuildingYear(@Param("buildingYear") int buildingYear);
+	List<Car> findByLicensePlate(@Param("licensePlate") String licensePlate);
+	List<Car> findByIsStolen(@Param("stolen") Boolean isStolen);
 }
