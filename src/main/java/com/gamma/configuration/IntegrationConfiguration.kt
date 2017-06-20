@@ -94,7 +94,19 @@ open class IntegrationConfiguration {
 
             val cars = carRepository.findByLicensePlate(stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin))
             if(cars.size == 0){
-                //TODO FATAL car not found in our system
+                val car: Car = Car(
+                        buildingYear = 0,
+                        licensePlate = stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin),
+                        weight = 0.0,
+                        milage = 0.0,
+                        type = CarType.FOREIGN,
+                        isStolen = false,
+                        carOwner = emptyList<Car_Owner>(),
+                        rate = rateRepository.findByType("Foreign"),
+                        trackerCar = emptyList()
+                )
+
+                carRepository.save(car)
                 return@subscribeToQueue
             }
             val car = cars.first()
