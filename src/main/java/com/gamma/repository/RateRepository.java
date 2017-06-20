@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "rate", path = "rate")
 public interface RateRepository extends JpaRepository<Rate, UUID> {
+	Rate findByType(String type);
 }
