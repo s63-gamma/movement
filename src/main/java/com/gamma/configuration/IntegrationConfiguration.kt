@@ -115,9 +115,9 @@ open class IntegrationConfiguration {
         })
     }
 
-    fun reportCarStolen(stolen: Boolean, car: Car){
+    fun reportCarStolen(stolen: Boolean = true, licensePlate: String){
         val sc = StolenCar(
-                licensePlate = car.licensePlate,
+                licensePlate = licensePlate,
                 countryOfOrigin = Countries.UNITED_KINGDOM,
                 stolenCar = stolen
         )
