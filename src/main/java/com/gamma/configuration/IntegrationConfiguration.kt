@@ -13,6 +13,7 @@ import com.gmail.guushamm.EuropeanIntegration.StolenCar
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by guushamm on 21-3-17.
@@ -95,34 +96,52 @@ open class IntegrationConfiguration {
         connector.subscribeToQueue(Countries.UNITED_KINGDOM, StolenCar::class.java, { message: String ->
             val stolenCar = gson.fromJson(message, com.gmail.guushamm.EuropeanIntegration.StolenCar::class.java)
 
-            val cars = carRepository.findByLicensePlate(stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin))
-            if (cars.size == 0) {
-                val car: Car = Car(
-                        buildingYear = 0,
-                        licensePlate = stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin),
-                        weight = 0.0,
-                        milage = 0.0,
-                        type = CarType.FOREIGN,
-                        isStolen = false,
-                        carOwner = emptyList<Car_Owner>(),
-                        rate = rateRepository.findByType("Foreign"),
-                        trackerCar = emptyList()
-                )
+            if (stolenCar.countryOfOrigin == Countries.UNITED_KINGDOM) {
+                val cars = carRepository.findByLicensePlate(stolenCar.licensePlate)
 
-                val tracker: Tracker = Tracker(
-                        authorisationCode = 1,
-                        serialNumber = faker.number().numberBetween(1, 10000000),
-                        type = TrackerType.CAMERA
-
-                )
-
+                if (cars.size == 0) {
+                    //TODO FATAL this car doesn't have a record of being registered in the UK
+                }
+                val car = cars.first()
+                car.isStolen = stolenCar.stolenCar
                 carRepository.save(car)
-                trackerRepository.save(tracker)
                 return@subscribeToQueue
+            } else {
+                val cars = carRepository.findByLicensePlate(stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin))
+                if (cars.size == 0) {
+                    val car: Car = Car(
+                            buildingYear = 0,
+                            licensePlate = stolenCar.licensePlate + "@" + countryToString(stolenCar.countryOfOrigin),
+                            weight = 0.0,
+                            milage = 0.0,
+                            type = CarType.FOREIGN,
+                            isStolen = stolenCar.stolenCar,
+                            carOwner = emptyList<Car_Owner>(),
+                            rate = rateRepository.findByType("Foreign"),
+                            trackerCar = emptyList()
+                    )
+                    carRepository.save(car)
+
+                    val tracker: Tracker = Tracker(
+                            authorisationCode = 1,
+                            serialNumber = faker.number().numberBetween(1, 10000000),
+                            type = TrackerType.CAMERA
+
+                    )
+                    trackerRepository.save(tracker)
+
+                    val trackerCar: Tracker_Car = Tracker_Car(startDate = faker.date().past(200000000, TimeUnit.MILLISECONDS))
+                    trackerCar.tracker = tracker
+                    car.trackerCar += trackerCar
+                    carRepository.save(car)
+                    return@subscribeToQueue
+                }
+                else {
+                    val car = cars.first()
+                    car.isStolen = stolenCar.stolenCar
+                    carRepository.save(car)
+                }
             }
-            val car = cars.first()
-            car.isStolen = stolenCar.stolenCar
-            carRepository.save(car)
         })
     }
 
