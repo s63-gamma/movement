@@ -1,10 +1,7 @@
 package com.gamma.configuration
 
 import com.gamma.dal.entities.*
-import com.gamma.repository.CarRepository
-import com.gamma.repository.InvoiceRepository
-import com.gamma.repository.RateRepository
-import com.gamma.repository.TrackerRepository
+import com.gamma.repository.*
 import com.gamma.service.InvoiceService
 import com.github.javafaker.Faker
 import com.gmail.guushamm.EuropeanIntegration.Connector
@@ -13,6 +10,8 @@ import com.gmail.guushamm.EuropeanIntegration.StolenCar
 import com.google.gson.Gson
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import java.time.Instant
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -36,6 +35,12 @@ open class IntegrationConfiguration {
     lateinit var trackerRepository: TrackerRepository
 
     @Autowired
+    lateinit var gpsPointRepository: GpsPointRepository
+
+    @Autowired
+    lateinit var regionRepository: RegionRepository
+
+    @Autowired
     lateinit var invoiceService: InvoiceService
 
     val connector: Connector = Connector()
@@ -48,8 +53,9 @@ open class IntegrationConfiguration {
 
             val cars = carRepository.findByLicensePlate(recievedCar.licensePlate)
 
-            if (cars.size == 0) {
+            print(cars)
 
+            if (cars.size == 0) {
                 val car: Car = Car(
                         buildingYear = 0,
                         licensePlate = recievedCar.licensePlate + "@" + countryToString(recievedCar.originCountry),
@@ -59,10 +65,39 @@ open class IntegrationConfiguration {
                         isStolen = false,
                         carOwner = emptyList<Car_Owner>(),
                         rate = rateRepository.findByType("Foreign"),
-                        trackerCar = emptyList()
+                        trackerCar = emptyList<Tracker_Car>()
                 )
-
                 carRepository.save(car)
+
+                val tracker: Tracker = Tracker(
+                        authorisationCode = 1,
+                        serialNumber = faker.number().numberBetween(1, 10000000),
+                        type = TrackerType.CAMERA
+
+                )
+                trackerRepository.save(tracker)
+
+                val trackerCar: Tracker_Car = Tracker_Car(startDate = Date.from(Instant.now()))
+                trackerCar.tracker = tracker
+                car.trackerCar += trackerCar
+                carRepository.save(car)
+
+                // Add a random entry point
+                val region = regionRepository.findAll()[0]
+
+                val longitude = region.longitude + (faker.number().numberBetween(-1000, 1000) * 0.00001)
+                val latitude = region.latitude + (faker.number().numberBetween(-1000, 1000) * 0.00001)
+
+                val gpsPoint: GpsPoint = GpsPoint(
+                        longitude = longitude,
+                        latitude = latitude,
+                        sequenceNumber = faker.number().randomDigitNotZero(),
+                        region = region,
+                        tracker = tracker,
+                        date = Instant.now()
+                )
+                gpsPointRepository.save(gpsPoint)
+
             }
         })
         connector.subscribeToQueue(Countries.UNITED_KINGDOM, com.gmail.guushamm.EuropeanIntegration.Invoice::class.java, { message: String ->
@@ -135,8 +170,7 @@ open class IntegrationConfiguration {
                     car.trackerCar += trackerCar
                     carRepository.save(car)
                     return@subscribeToQueue
-                }
-                else {
+                } else {
                     val car = cars.first()
                     car.isStolen = stolenCar.stolenCar
                     carRepository.save(car)
