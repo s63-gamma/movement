@@ -93,18 +93,18 @@ open class GMovementApplication : SpringBootServletInitializer() {
                 latitude = 51.900753,
                 radius = 20000,
                 costMultiplier = 1.8))
-//        regions.add(Region(
-//                name = "Bicester",
-//                longitude = -1.153994,
-//                latitude = 51.900753,
-//                radius = 5000,
-//                costMultiplier = 1.8))
-//        regions.add(Region(
-//                name = "Bicester City Center",
-//                longitude = -1.153994,
-//                latitude = 51.900753,
-//                radius = 500,
-//                costMultiplier = 2.2))
+        regions.add(Region(
+                name = "Bicester",
+                longitude = -1.153994,
+                latitude = 51.900753,
+                radius = 5000,
+                costMultiplier = 1.8))
+        regions.add(Region(
+                name = "Bicester City Center",
+                longitude = -1.153994,
+                latitude = 51.900753,
+                radius = 500,
+                costMultiplier = 2.2))
 
         regions.forEach { regionRepository.save(it) }
 
@@ -167,7 +167,7 @@ open class GMovementApplication : SpringBootServletInitializer() {
             invoices.add(Invoice(
                     date = Date(),
                     distance = faker.number().numberBetween(0, 2000).toDouble(),
-                    priceTotal = faker.number().numberBetween(0, 10000).toDouble(),
+                    priceTotal = faker.number().numberBetween(0, 1000).toDouble(),
                     status = faker.number().numberBetween(0, 1),
                     paymentCode = faker.bothify("##???#?#?"),
                     owner = demoOwner
